@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Top10Covid19Cases.Helpers;
 using Top10Covid19Cases.Models;
 
 namespace Top10Covid19Cases.Controllers
@@ -20,7 +21,8 @@ namespace Top10Covid19Cases.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var provincesData = StatisticsProviderHelper.getCollapsedStatisticsData();
+            return View(provincesData);
         }
 
         public IActionResult Privacy()

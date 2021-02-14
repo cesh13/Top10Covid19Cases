@@ -1,8 +1,10 @@
-﻿@{
+﻿@model DataWrapper<ProvinceStatistic>
+@{
     ViewData["Title"] = "Home Page";
+    //var grid = new WebGridMvc.WebGrid<DataWrapper<ProvinceStatistic>>(Model);
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Covid 19 Top 10</h1>
+    <h2>test: @Model.data.FirstOrDefault().region.name</h2>
 </div>
