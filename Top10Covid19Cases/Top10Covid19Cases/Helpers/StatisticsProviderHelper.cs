@@ -9,7 +9,7 @@ namespace Top10Covid19Cases.Helpers
 {
     public static class StatisticsProviderHelper
     {
-        public static DataWrapper<ProvinceStatistic> getCollapsedStatisticsData()
+        public static List<RegionStatisticFlattendData> getCollapsedStatisticsData()
         {
             Dictionary<string, string> headers = new Dictionary<string, string>();
             Dictionary<string, string> parameters = new Dictionary<string, string>();
@@ -24,9 +24,41 @@ namespace Top10Covid19Cases.Helpers
 
             response = responseTask.Result;
 
-            DataWrapper<ProvinceStatistic> data = JsonConvert.DeserializeObject<DataWrapper<ProvinceStatistic>>(response);
+            DataWrapper<RegionStatistic> report = JsonConvert.DeserializeObject<DataWrapper<RegionStatistic>>(response);
+            var collapsedReport = collapseData(report);
 
-            return data;
+            //sort and trim collapsedReport
+            var collapsedOrderedTrimedReport = collapsedReport.OrderByDescending(x => x.cases).Take(10).ToList();
+
+            return collapsedOrderedTrimedReport;
+        }
+
+        private  static List<RegionStatisticFlattendData> collapseData(DataWrapper<RegionStatistic> report)
+        {
+            var collapsedData = new List<RegionStatisticFlattendData>();
+            
+            foreach (var provinceStatistic in report.data)
+            {
+                //check if the same region is already in the collapsed data, if it is sum it
+                var searchResult = collapsedData.Find(x => x.region == provinceStatistic.region.name);
+
+                if (searchResult != null)
+                {
+                    searchResult.cases += provinceStatistic.confirmed;
+                    searchResult.deaths += provinceStatistic.deaths;                    
+                }
+                else
+                {
+                    collapsedData.Add(new RegionStatisticFlattendData
+                    {
+                        region = provinceStatistic.region.name,
+                        cases = provinceStatistic.confirmed,
+                        deaths = provinceStatistic.deaths
+                    });;
+                }
+            }
+
+            return collapsedData;
         }
 
     }

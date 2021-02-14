@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Top10Covid19Cases.Models
 {
-    public class ProvinceStatistic
+    public class RegionStatistic
     {
         public string date { get; set; }
         public int confirmed { get; set; }

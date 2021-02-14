@@ -19,10 +19,15 @@ namespace Top10Covid19Cases.Controllers
             _logger = logger;
         }
 
+        public JsonResult GetStatistics()
+        {
+            return Json(StatisticsProviderHelper.getCollapsedStatisticsData());
+        }
+
         public IActionResult Index()
         {
-            var provincesData = StatisticsProviderHelper.getCollapsedStatisticsData();
-            return View(provincesData);
+            
+            return View();
         }
 
         public IActionResult Privacy()

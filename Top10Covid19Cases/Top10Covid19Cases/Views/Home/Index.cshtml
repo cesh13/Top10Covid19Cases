@@ -1,10 +1,60 @@
-﻿@model DataWrapper<ProvinceStatistic>
+﻿@section Scripts{
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
+    <script src="~/js/statsGrid.js"></script>
+}
 @{
     ViewData["Title"] = "Home Page";
     //var grid = new WebGridMvc.WebGrid<DataWrapper<ProvinceStatistic>>(Model);
 }
 
 <div class="text-center">
-    <h1 class="display-4">Covid 19 Top 10</h1>
-    <h2>test: @Model.data.FirstOrDefault().region.name</h2>
+    <h1 class="display-4">Covid 19 Information</h1>
 </div>
+<br /><br />
+      <div class="row">
+          <div class="col-md-3">
+              <select name="Regions" id="regions" class="form-control">
+                  <option value="volvo">Volvo</option>
+                  <option value="saab">Saab</option>
+                  <option value="mercedes">Mercedes</option>
+                  <option value="audi">Audi</option>
+              </select>
+          </div>
+          <div class="col-md-3">
+              <button class="btn btn-primary btn-block" name="btnGenerateReport">Reports</button>
+          </div>
+          <div class="col-2">
+              <button class="btn btn-secondary btn-block">CSV</button>
+          </div>
+          <div class="col-2">
+              <button class="btn btn-secondary btn-block">JSON</button>
+          </div>
+          <div class="col-2">
+              <button class="btn btn-secondary btn-block">XML</button>
+          </div>
+      </div>
+<hr />
+
+<table id="table_id" class="display">
+    <thead>
+        <tr>
+            <th>Column 1</th>
+            <th>Column 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Row 1 Data 1</td>
+            <td>Row 1 Data 2</td>
+        </tr>
+        <tr>
+            <td>Row 2 Data 1</td>
+            <td>Row 2 Data 2</td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+
