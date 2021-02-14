@@ -19,9 +19,18 @@ namespace Top10Covid19Cases.Controllers
             _logger = logger;
         }
 
-        public JsonResult GetStatistics()
+        public JsonResult RegionStatistics()
         {
-            return Json(StatisticsProviderHelper.getCollapsedStatisticsData());
+            DataWrapper<RegionStatisticFlattendData> regionData = new DataWrapper<RegionStatisticFlattendData>();
+            regionData.data = StatisticsProviderHelper.getRegionStatistics();
+            return Json(regionData);
+        }
+
+        public JsonResult Regions()
+        {
+            DataWrapper<Region> regionData = new DataWrapper<Region>();
+            regionData.data = StatisticsProviderHelper.getRegions();
+            return Json(regionData);
         }
 
         public IActionResult Index()

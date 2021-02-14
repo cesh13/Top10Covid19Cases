@@ -9,7 +9,7 @@ namespace Top10Covid19Cases.Helpers
 {
     public static class StatisticsProviderHelper
     {
-        public static List<RegionStatisticFlattendData> getCollapsedStatisticsData()
+        public static List<RegionStatisticFlattendData> getRegionStatistics()
         {
             Dictionary<string, string> headers = new Dictionary<string, string>();
             Dictionary<string, string> parameters = new Dictionary<string, string>();
@@ -61,5 +61,12 @@ namespace Top10Covid19Cases.Helpers
             return collapsedData;
         }
 
+        public static List<Region> getRegions()
+        {
+            var responseTask = ApiCallerHelper.makeGetRequest("https://covid-19-statistics.p.rapidapi.com", "regions", new Dictionary<string, string>(), new Dictionary<string, string>() );
+            responseTask.Wait();
+            var response = responseTask.Result;
+            return JsonConvert.DeserializeObject<DataWrapper<Region>>(response).data;
+        }
     }
 }
