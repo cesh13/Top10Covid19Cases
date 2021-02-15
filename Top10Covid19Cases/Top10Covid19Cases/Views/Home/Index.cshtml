@@ -21,31 +21,27 @@
         </select>
     </div>
     <div class="col-md-3">
-        <button class="btn btn-primary btn-block btn-sm" name="btnGenerateReport">Reports</button>
+        <button class="btn btn-primary btn-block btn-sm" onclick="getReport()" name="btnGenerateReport">Reports</button>
     </div>
     <div class="col-2">
-        <button class="btn btn-secondary btn-block btn-sm">CSV</button>
+        <button class="btn btn-secondary btn-block btn-sm" onclick="getCSVFile()">CSV</button>
     </div>
     <div class="col-2">
-        <button class="btn btn-secondary btn-block btn-sm"" >JSON</button>
+        <button class="btn btn-secondary btn-block btn-sm" onclick="getJSONFile()">JSON</button>
     </div>
     <div class="col-2">
-        <button class="btn btn-secondary btn-block btn-sm"">XML</button>
+        <button class="btn btn-secondary btn-block btn-sm" onclick="getXMLFile()">XML</button>
     </div>
 </div>
 <hr />
 <br />
 <div class="col-6 offset-3">
-    <table id="table_id" class="table table-hover table-striped">
+    <table id="covidInfoTable" class="table table-hover table-striped">
         <thead>
-            <tr>
-                <th>Region</th>
-                <th>Cases</th>
-                <th>Deaths</th>
-            </tr>
+            <th>Region/Province</th>
+            <th>Total Cases</th>
+            <th>Deaths</th>
         </thead>
-        <tbody>
-        </tbody>
     </table>
 </div>
 
